@@ -31,7 +31,7 @@ cert: false
 ```
 9. Скопировать password в Environment Settings
    ```
-   PASSWORD=f9de8c48570ab3c1d7461100
+   PASSWORD=f9de8c48570ab3c1d7461100 (Изменен :))
    ```
 10. Создать домен с портом 8080
 11. Зайти на домен и ввести пароль (password из config.yaml). 
