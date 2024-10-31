@@ -1,4 +1,4 @@
-# vscode-server (Dokploy)
+# vscode-server [Dokploy](https://dokploy.com/)
 
 Dockerfile запускает следующий код по [документации](https://coder.com/docs/code-server/install)
 ```
