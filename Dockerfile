@@ -7,7 +7,7 @@ RUN apt-get update && \
     apt-get clean
 
 # Устанавливаем переменную VERSION
-#ARG VERSION=4.0.0  # Что за версия?
+ARG VERSION=4.93.1
 
 # Загружаем и устанавливаем code-server
 RUN curl -fOL https://github.com/coder/code-server/releases/download/v$VERSION/code-server_${VERSION}_amd64.deb && \
