@@ -24,9 +24,6 @@ WORKDIR /home/code-server-user
 # Открываем порт 8080
 EXPOSE 8080
 
-# Устанавливаем переменные окружения для пользователя и пароля
-ENV USERNAME=code-server-user
-
 # Запускаем code-server с использованием переменных окружения
 USER code-server-user
 CMD ["sh", "-c", "echo \"password: $PASSWORD\" > /home/code-server-user/.config/code-server/config.yaml && code-server --host 0.0.0.0 --port 8080 --auth password"]
