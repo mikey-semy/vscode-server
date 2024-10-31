@@ -10,7 +10,8 @@ RUN apt-get update && \
 ARG VERSION=4.93.1
 
 # Загружаем и устанавливаем code-server
-RUN curl -fOL https://github.com/coder/code-server/releases/download/v$VERSION/code-server_${VERSION}_amd64.deb && \
+RUN apt-get update && apt-get install -y wget && \
+    wget https://github.com/coder/code-server/releases/download/v${VERSION}/code-server_${VERSION}_amd64.deb && \
     sudo dpkg -i code-server_${VERSION}_amd64.deb && \
     rm code-server_${VERSION}_amd64.deb
 
