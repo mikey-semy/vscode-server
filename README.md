@@ -9,7 +9,7 @@ sudo systemctl enable --now code-server@$USER
 Инструкция для Dokploy:
 
 1. Создать репозиторий vscode-server (клонировать)
-2. Создать новый проект/сервис под именем vscode
+2. Создать новый проект/сервис, например под именем vscode
 3. [Узнать последнюю версию релиза](https://github.com/coder/code-server), например 4.93.1
 4. Записать в Environment Settings:
    ```
