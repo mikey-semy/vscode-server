@@ -26,7 +26,6 @@ EXPOSE 8080
 
 # Устанавливаем переменные окружения для пользователя и пароля
 ENV USERNAME=code-server-user
-ENV PASSWORD=password
 
 # Запускаем code-server с использованием переменных окружения
 USER code-server-user
