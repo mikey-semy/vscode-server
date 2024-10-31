@@ -12,7 +12,15 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | s
     apt-get update && \
     apt-get install -y gh && \
     apt-get clean
-    
+
+# Устанавливаем Node.js и npm
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean
+
+# Устанавливаем yarn
+RUN npm install --global yarn
+
 # Устанавливаем переменную VERSION
 ARG VERSION=4.93.1  # Замените на нужную версию
 
@@ -21,7 +29,6 @@ RUN apt-get update && apt-get install -y wget && \
     wget https://github.com/coder/code-server/releases/download/v${VERSION}/code-server_${VERSION}_amd64.deb && \
     sudo dpkg -i code-server_${VERSION}_amd64.deb && \
     rm code-server_${VERSION}_amd64.deb
-
 
 # Создаем пользователя для запуска code-server
 RUN useradd -m code-server-user
