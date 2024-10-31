@@ -27,4 +27,4 @@ EXPOSE 8080
 
 # Запускаем code-server с использованием переменных окружения
 USER code-server-user
-CMD ["sh", "-c", "mkdir -p /home/code-server-user/.config/code-server && echo \"password: $PASSWORD\" > /home/code-server-user/.config/code-server/config.yaml && code-server --host 0.0.0.0 --port 8080 --auth password"]
+CMD ["sh", "-c", "code-server --host 0.0.0.0 --port 8080 --auth password"]
