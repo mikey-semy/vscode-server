@@ -4,6 +4,7 @@ FROM ubuntu:20.04
 # Устанавливаем необходимые зависимости
 RUN apt-get update && \
     apt-get install -y curl sudo python3 python3-pip && \
+    apt-get install -y libpq-dev && \  # Устанавливаем библиотеки разработки PostgreSQL
     apt-get clean
 
 # Устанавливаем GitHub CLI
