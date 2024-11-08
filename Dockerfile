@@ -37,7 +37,8 @@ RUN useradd -m code-server-user
 # Устанавливаем рабочую директорию
 WORKDIR /home/code-server-user
 
-# Открываем порт 8080
+# Открываем порты:
+EXPOSE 8000
 EXPOSE 8080
 EXPOSE 5173
 
