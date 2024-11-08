@@ -39,6 +39,7 @@ WORKDIR /home/code-server-user
 
 # Открываем порт 8080
 EXPOSE 8080
+EXPOSE 5137
 
 # Запускаем code-server с использованием переменных окружения
 USER code-server-user
