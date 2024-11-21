@@ -1,5 +1,5 @@
 # Используем базовый образ Ubuntu
-FROM ubuntu:24.04
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
@@ -47,12 +47,10 @@ RUN useradd -m -s /bin/bash code-server-user
 WORKDIR /home/code-server-user
 
 # Устанавливаем Python 3.11 как версию по умолчанию
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+# RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
 
-# Открываем порты:
-EXPOSE 8000
+# Открываем порт:
 EXPOSE 8080
-EXPOSE 5173
 
 # Запускаем code-server с использованием переменных окружения
 USER code-server-user
