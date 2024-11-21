@@ -4,7 +4,7 @@ FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 
-# Устанавливаем необходимые зависимости: python3.10 и библиотеки разработки PostgreSQL
+# Устанавливаем необходимые зависимости: python3.11 и библиотеки разработки PostgreSQL
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
@@ -46,8 +46,8 @@ RUN useradd -m -s /bin/bash code-server-user
 # Устанавливаем рабочую директорию
 WORKDIR /home/code-server-user
 
-# Устанавливаем Python 3.13 как версию по умолчанию
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+# Устанавливаем Python 3.11 как версию по умолчанию
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
 
 # Открываем порты:
 EXPOSE 8000
