@@ -43,8 +43,7 @@ RUN useradd -m -s /bin/bash code-server-user
 WORKDIR /home/code-server-user
 
 # Устанавливаем Python 3.13 как версию по умолчанию
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1 && \
-    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 2
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
 
 # Открываем порты:
 EXPOSE 8000
