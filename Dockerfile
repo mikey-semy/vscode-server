@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 
 # Устанавливаем необходимые зависимости: python3 и библиотеки разработки PostgreSQL
 RUN apt-get update && \
-    apt-get install -y curl sudo python3 python3-pip && \
+    apt-get install -y curl sudo python3 python3-pip python3.10 && \
     apt-get install -y libpq-dev && \
     apt-get clean
 
