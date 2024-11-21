@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt-get update && \
-    apt-get install -y --no-install-recommends curl sudo python3.13 python3.13-dev python3-pip libpq-dev bash && \
+    apt-get install -y --no-install-recommends curl sudo python3.13 python3.13-dev python3-venv python3-pip libpq-dev bash && \
     dpkg-reconfigure -f noninteractive tzdata
 
 # Устанавливаем GitHub CLI
