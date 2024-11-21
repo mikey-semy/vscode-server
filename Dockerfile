@@ -48,4 +48,4 @@ EXPOSE 5173
 
 # Запускаем code-server с использованием переменных окружения
 USER code-server-user
-CMD ["sh", "code-server --host 0.0.0.0 --port 8080 --auth password"]
+CMD ["sh", "-c", "code-server --host 0.0.0.0 --port 8080 --auth password"]
