@@ -12,6 +12,10 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends curl sudo python3.13 python3.13-dev python3-venv python3-pip libpq-dev bash && \
     dpkg-reconfigure -f noninteractive tzdata
 
+RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
+	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
+
 # Устанавливаем GitHub CLI
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null && \
     echo "deb [signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null && \
