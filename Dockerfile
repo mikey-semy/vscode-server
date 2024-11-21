@@ -1,5 +1,5 @@
 # Используем базовый образ Ubuntu
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
@@ -9,9 +9,8 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt-get update && \
-    apt-get install -y --no-install-recommends curl sudo python3.13 python3.13-dev python3-pip libpq-dev
-    
-RUN dpkg-reconfigure -f noninteractive tzdata
+    apt-get install -y --no-install-recommends curl sudo python3.13 python3.13-dev python3-pip libpq-dev bash && \
+    dpkg-reconfigure -f noninteractive tzdata
 
 # Устанавливаем GitHub CLI
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null && \
@@ -37,8 +36,8 @@ RUN apt-get update && apt-get install -y wget && \
     sudo dpkg -i code-server_${VERSION}_amd64.deb && \
     rm code-server_${VERSION}_amd64.deb
 
-# Создаем пользователя для запуска code-server
-RUN useradd -m code-server-user
+# Создаем пользователя для запуска code-server с bash как оболочкой
+RUN useradd -m -s /bin/bash code-server-user
 
 # Устанавливаем рабочую директорию
 WORKDIR /home/code-server-user
@@ -54,4 +53,4 @@ EXPOSE 5173
 
 # Запускаем code-server с использованием переменных окружения
 USER code-server-user
-CMD ["sh", "-c", "code-server --host 0.0.0.0 --port 8080 --auth password"]
+CMD ["bash", "-c", "code-server --host 0.0.0.0 --port 8080 --auth password"]
