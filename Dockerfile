@@ -4,7 +4,7 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 
-# Устанавливаем необходимые зависимости: python3 и библиотеки разработки PostgreSQL
+# Устанавливаем необходимые зависимости: python3.10 и библиотеки разработки PostgreSQL
 RUN apt-get update && \
     apt-get install -y --no-install-recommends curl sudo python3 python3-pip python3.10 && \
     apt-get install -y libpq-dev
