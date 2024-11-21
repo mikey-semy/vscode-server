@@ -1,11 +1,15 @@
 # Используем базовый образ Ubuntu
 FROM ubuntu:20.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=UTC
+
 # Устанавливаем необходимые зависимости: python3 и библиотеки разработки PostgreSQL
 RUN apt-get update && \
     apt-get install -y --no-install-recommends curl sudo python3 python3-pip python3.10 && \
-    apt-get install -y libpq-dev && \
-    apt-get clean
+    apt-get install -y libpq-dev
+
+RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Устанавливаем GitHub CLI
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null && \
@@ -44,4 +48,4 @@ EXPOSE 5173
 
 # Запускаем code-server с использованием переменных окружения
 USER code-server-user
-CMD ["sh", "-c", "code-server --host 0.0.0.0 --port 8080 --auth password"]
+CMD ["sh", "code-server --host 0.0.0.0 --port 8080 --auth password"]
