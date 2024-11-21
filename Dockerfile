@@ -6,9 +6,11 @@ ENV TZ=UTC
 
 # Устанавливаем необходимые зависимости: python3.10 и библиотеки разработки PostgreSQL
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl sudo python3 python3-pip python3.10 && \
-    apt-get install -y libpq-dev
-
+    apt-get install -y software-properties-common && \
+    add-apt-repository ppa:deadsnakes/ppa && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends curl sudo python3.13 python3.13-dev python3-pip libpq-dev
+    
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Устанавливаем GitHub CLI
