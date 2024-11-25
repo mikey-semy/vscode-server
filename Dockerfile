@@ -13,7 +13,21 @@ RUN apt-get update && \
         libpq-dev \
         bash \
         python3-full \
-	wget \
+        wget \
+        build-essential \
+        libssl-dev \
+        zlib1g-dev \
+        libbz2-dev \
+        libreadline-dev \
+        libsqlite3-dev \
+        llvm \
+        libncursesw5-dev \
+        xz-utils \
+        tk-dev \
+        libxml2-dev \
+        libxmlsec1-dev \
+        libffi-dev \
+        liblzma-dev \
     && dpkg-reconfigure -f noninteractive tzdata
 
 # Устанавливаем Python 3.13
