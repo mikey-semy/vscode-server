@@ -10,14 +10,20 @@ RUN apt-get update && \
         software-properties-common \
         curl \
         sudo \
-        python3.13 \
-        python3.13-dev \
-        python3-venv \
-        python3-pip \
         libpq-dev \
         bash \
         python3-full \
     && dpkg-reconfigure -f noninteractive tzdata
+
+# Устанавливаем Python 3.13
+RUN wget https://www.python.org/ftp/python/3.13.0/Python-3.13.0.tgz \
+    && tar -xzf Python-3.13.0.tgz \
+    && cd Python-3.13.0 \
+    && ./configure --enable-optimizations \
+    && make -j$(nproc) \
+    && make altinstall \
+    && cd .. \
+    && rm -rf Python-3.13.0 Python-3.13.0.tgz
 
 RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
 	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
