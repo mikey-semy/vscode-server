@@ -87,12 +87,6 @@ WORKDIR /home/code-server-user
 
 # Открываем порт:
 EXPOSE 8080
-
-# Устанавливаем расширения для code-server
-RUN code-server --install-extension ms-python.python \
-                --install-extension ms-vscode.csharp \
-                --install-extension esbenp.prettier-vscode \
-                --install-extension dbaeumer.vscode-eslint
 		
 # Запускаем code-server с использованием переменных окружения
 USER code-server-user
