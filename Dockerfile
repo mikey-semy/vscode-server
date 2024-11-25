@@ -4,20 +4,31 @@ FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 
-# Устанавливаем необходимые зависимости: python3.13 и библиотеки разработки PostgreSQL
+# Устанавливаем необходимые зависимости: Python 3.13 и библиотеки разработки PostgreSQL
 RUN apt-get update && \
-    apt-get install -y software-properties-common && \
-    add-apt-repository ppa:deadsnakes/ppa && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends curl sudo python3.13 python3.13-dev python3-venv python3-pip libpq-dev bash && \
-    dpkg-reconfigure -f noninteractive tzdata
+    apt-get install -y --no-install-recommends \
+        software-properties-common \
+        curl \
+        sudo \
+        python3.13 \
+        python3.13-dev \
+        python3-venv \
+        python3-pip \
+        libpq-dev \
+        bash \
+        python3-full \
+    && dpkg-reconfigure -f noninteractive tzdata
 
 RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
 	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
 
+# Создание виртуального окружения
+RUN python3 -m venv /opt/venv
+ENV VIRTUAL_ENV=/opt/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 # Установка Poetry
-RUN pip3 install --upgrade pip
 RUN pip3 install poetry
 
 # Устанавливаем GitHub CLI
@@ -56,6 +67,12 @@ WORKDIR /home/code-server-user
 # Открываем порт:
 EXPOSE 8080
 
+# Устанавливаем расширения для code-server
+RUN code-server --install-extension ms-python.python \
+                --install-extension ms-vscode.csharp \
+                --install-extension esbenp.prettier-vscode \
+                --install-extension dbaeumer.vscode-eslint
+		
 # Запускаем code-server с использованием переменных окружения
 USER code-server-user
 CMD ["bash", "-c", "code-server --host 0.0.0.0 --port 8080 --auth password"]
