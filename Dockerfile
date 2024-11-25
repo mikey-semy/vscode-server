@@ -1,20 +1,24 @@
 # Используем базовый образ Ubuntu
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 
-# Устанавливаем необходимые зависимости: python3.11 и библиотеки разработки PostgreSQL
+# Устанавливаем необходимые зависимости: python3.13 и библиотеки разработки PostgreSQL
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt-get update && \
-    apt-get install -y --no-install-recommends curl sudo python3.11 python3.11-dev python3-venv python3-pip libpq-dev bash && \
+    apt-get install -y --no-install-recommends curl sudo python3.13 python3.13-dev python3-venv python3-pip libpq-dev bash && \
     dpkg-reconfigure -f noninteractive tzdata
 
 RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
 	&& localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
+
+# Установка Poetry
+RUN pip3 install --upgrade pip
+RUN pip3 install poetry
 
 # Устанавливаем GitHub CLI
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null && \
