@@ -13,6 +13,7 @@ RUN apt-get update && \
         libpq-dev \
         bash \
         python3-full \
+	wget \
     && dpkg-reconfigure -f noninteractive tzdata
 
 # Устанавливаем Python 3.13
