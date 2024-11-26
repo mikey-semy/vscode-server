@@ -5,30 +5,28 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 
 # Устанавливаем необходимые зависимости: Python 3.11, 3.12, 3.13 и библиотеки разработки PostgreSQL
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        software-properties-common \
-        curl \
-        sudo \
-        libpq-dev \
-        bash \
-        python3-full \
-        wget \
-        build-essential \
-        libssl-dev \
-        zlib1g-dev \
-        libbz2-dev \
-        libreadline-dev \
-        libsqlite3-dev \
-        llvm \
-        libncursesw5-dev \
-        xz-utils \
+RUN apk add --no-cache \
+        python3 \
+        python3-dev \
+        py3-pip \
+        build-base \
+        openssl-dev \
+        zlib-dev \
+        bzip2-dev \
+        readline-dev \
+        sqlite-dev \
+        llvm-dev \
+        ncurses-dev \
+        xz-dev \
         tk-dev \
         libxml2-dev \
         libxmlsec1-dev \
         libffi-dev \
-        liblzma-dev && \
-    dpkg-reconfigure -f noninteractive tzdata
+        curl \
+        sudo \
+        libpq-dev \
+        bash \
+        wget
 
 # Устанавливаем Python 3.11.6
 RUN wget https://www.python.org/ftp/python/3.11.6/Python-3.11.6.tgz \
