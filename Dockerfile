@@ -27,8 +27,8 @@ RUN apt-get update && \
         libxml2-dev \
         libxmlsec1-dev \
         libffi-dev \
-        liblzma-dev \
-    && dpkg-reconfigure -f noninteractive tzdata
+        liblzma-dev && \
+    dpkg-reconfigure -f noninteractive tzdata
 
 # Устанавливаем Python 3.11.6
 RUN wget https://www.python.org/ftp/python/3.11.6/Python-3.11.6.tgz \
