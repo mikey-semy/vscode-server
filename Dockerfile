@@ -1,26 +1,26 @@
 # Используем базовый образ Ubuntu
-FROM alpine:3.20
+FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 
 # Устанавливаем необходимые зависимости: Python 3.11, 3.12, 3.13 и библиотеки разработки PostgreSQL
-RUN apk add --no-cache \
-        python3 \
-        python3-dev \
-        py3-pip \
-        build-base \
-        openssl-dev \
-        zlib-dev \
-        bzip2-dev \
-        readline-dev \
-        sqlite-dev \
-        llvm-dev \
-        ncurses-dev \
-        xz-dev \
+RUN apt-get update && apt-get install -y \
+        python3.11 \
+        python3.11-dev \
+        python3-pip \
+        build-essential \
+        libssl-dev \
+        zlib1g-dev \
+        libbz2-dev \
+        libreadline-dev \
+        libsqlite3-dev \
+        llvm \
+        libncurses5-dev \
+        xz-utils \
         tk-dev \
         libxml2-dev \
-        libxmlsec1-utils \
+        libxmlsec1-dev \
         libffi-dev \
         curl \
         sudo \
