@@ -20,7 +20,7 @@ RUN apk add --no-cache \
         xz-dev \
         tk-dev \
         libxml2-dev \
-        libxmlsec1-dev \
+        libxmlsec1-utils \
         libffi-dev \
         curl \
         sudo \
