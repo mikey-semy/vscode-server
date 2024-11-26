@@ -1,10 +1,10 @@
 # Используем базовый образ Ubuntu
-FROM ubuntu:24.04
+FROM alpine:3.20
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=UTC
 
-# Устанавливаем необходимые зависимости: Python 3.13 и библиотеки разработки PostgreSQL
+# Устанавливаем необходимые зависимости: Python 3.11, 3.12, 3.13 и библиотеки разработки PostgreSQL
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         software-properties-common \
@@ -30,7 +30,27 @@ RUN apt-get update && \
         liblzma-dev \
     && dpkg-reconfigure -f noninteractive tzdata
 
-# Устанавливаем Python 3.13
+# Устанавливаем Python 3.11.6
+RUN wget https://www.python.org/ftp/python/3.11.6/Python-3.11.6.tgz \
+    && tar -xzf Python-3.11.6.tgz \
+    && cd Python-3.11.6 \
+    && ./configure --enable-optimizations \
+    && make -j$(nproc) \
+    && make altinstall \
+    && cd .. \
+    && rm -rf Python-3.11.6 Python-3.11.6.tgz
+
+# Устанавливаем Python 3.12.3
+RUN wget https://www.python.org/ftp/python/3.12.3/Python-3.12.3.tgz \
+    && tar -xzf Python-3.12.3.tgz \
+    && cd Python-3.12.3 \
+    && ./configure --enable-optimizations \
+    && make -j$(nproc) \
+    && make altinstall \
+    && cd .. \
+    && rm -rf Python-3.12.3 Python-3.12.3.tgz
+
+# Устанавливаем Python 3.13.0
 RUN wget https://www.python.org/ftp/python/3.13.0/Python-3.13.0.tgz \
     && tar -xzf Python-3.13.0.tgz \
     && cd Python-3.13.0 \
